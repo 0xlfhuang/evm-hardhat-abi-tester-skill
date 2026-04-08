@@ -1,0 +1,18 @@
+# EVM Hardhat ABI Tester
+
+Use the bundle at `__BUNDLE_PATH__` as the source of truth.
+
+Before scaffolding or editing a Hardhat ABI testing project:
+
+1. Read `__BUNDLE_PATH__/SKILL.md`
+2. If runtime setup is uncertain, read `__BUNDLE_PATH__/references/nodejs-setup.md`
+3. If the user only has RPC, chain ID, private key, ABI, and docs, use the workflow from the bundle exactly
+4. Use `__BUNDLE_PATH__/assets/hardhat-js-template/` as the scaffold
+
+Rules:
+
+- default network alias is `gsc_v2_test`
+- write `.env` first
+- save ABI under `abi/<ContractName>.json`
+- prioritize read tests before write tests
+- keep write tests skipped until the transaction details are confirmed

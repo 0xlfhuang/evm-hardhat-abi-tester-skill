@@ -1,0 +1,13 @@
+{
+  "defaultNetwork": "gsc_v2_test",
+  "contractName": "Contract",
+  "contractAddress": "",
+  "abiPath": "abi/Contract.json",
+  "docsPath": "docs/Contract.md",
+  "readMethods": [],
+  "writeMethods": [],
+  "smokeRead": {
+    "method": "",
+    "args": []
+  }
+}

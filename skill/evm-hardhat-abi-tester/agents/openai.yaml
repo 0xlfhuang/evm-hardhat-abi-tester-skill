@@ -1,0 +1,8 @@
+interface:
+  display_name: "EVM Hardhat ABI Tester"
+  short_description: "Scaffold ABI-driven Hardhat contract tests"
+  brand_color: "#0F766E"
+  default_prompt: "Use $evm-hardhat-abi-tester to set up a Hardhat JavaScript test project for my deployed EVM contract from RPC, chainId, private key, ABI, and docs."
+
+policy:
+  allow_implicit_invocation: true

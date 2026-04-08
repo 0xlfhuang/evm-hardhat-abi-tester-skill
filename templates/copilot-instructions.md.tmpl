@@ -1,0 +1,14 @@
+# EVM Hardhat ABI Tester
+
+Use the bundle at `__BUNDLE_PATH__` when the task is to scaffold or run Hardhat tests for an existing EVM contract from ABI.
+
+Follow this order:
+
+1. Check `node -v` and `npm -v`
+2. If either is missing, use `__BUNDLE_PATH__/references/nodejs-setup.md`
+3. Read `__BUNDLE_PATH__/SKILL.md`
+4. Use `__BUNDLE_PATH__/assets/hardhat-js-template/` as the canonical scaffold
+5. Default all commands to `--network gsc_v2_test`
+6. Prioritize read tests before write tests
+
+Keep write tests disabled until the user confirms the contract address and transaction details.
