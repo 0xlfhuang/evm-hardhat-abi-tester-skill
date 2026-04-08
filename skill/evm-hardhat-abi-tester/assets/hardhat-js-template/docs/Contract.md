@@ -1,9 +1,76 @@
-# Contract Interface Notes
+# 合约接口说明与测试备注
 
-Replace this file with the real interface documentation summary.
+这个文件用于记录“这个合约是做什么的、优先测什么、哪些写操作要谨慎”，方便你后续维护测试脚本时快速回忆上下文。
 
-Suggested contents:
-- what the contract is used for
-- which read methods are safest to call first
-- which write methods should stay disabled until later
-- argument examples for the first smoke read and the first write case
+如果你已经有正式接口文档，可以把重点内容整理到下面这些小节里。
+
+## 1. 合约用途
+
+- 这个合约的主要功能是什么
+- 当前测试项目主要想验证哪些能力
+- 是否有需要特别注意的权限或角色限制
+
+## 2. 已知部署信息
+
+- 网络别名：`gsc_v2_test`
+- 合约地址：`待填写`
+- ABI 文件：`abi/Contract.json`
+
+如果后面换了地址或网络，也建议同步更新这里和 `config/targets.json`。
+
+## 3. 建议先跑的只读方法
+
+优先记录最适合作为 smoke read 的方法：
+
+- 方法名：
+- 参数示例：
+- 预期返回：
+- 为什么这个方法适合先测：
+
+如果有多个只读方法，也可以继续往下补：
+
+- 方法名：
+- 参数示例：
+- 预期返回：
+
+## 4. 暂时不要直接开启的写方法
+
+把目前还不适合直接执行真实交易的方法记在这里：
+
+- 方法名：
+- 参数说明：
+- 可能副作用：
+- 为什么暂时不要直接跑：
+
+## 5. 第一个 smoke read 建议
+
+建议和 `config/targets.json` 里的 `smokeRead` 保持一致：
+
+- `smokeRead.method`：
+- `smokeRead.args`：
+- 调用前置条件：
+
+## 6. 新增测试时要关注什么
+
+新增读测试前，先确认：
+
+- 地址是否正确
+- ABI 是否是最新版本
+- 方法是否是 `view` / `pure`
+- 参数是否已经确认
+
+新增写测试前，先确认：
+
+- 方法名和参数顺序完全正确
+- 你理解这会发起真实交易
+- 是否可以先用 `staticCall` 做预检查
+- 是否应该继续保持默认跳过状态
+
+## 7. 备注
+
+这里可以继续补充：
+
+- 事件说明
+- 常见错误信息
+- 特殊返回值解释
+- 与测试文件对应的案例说明

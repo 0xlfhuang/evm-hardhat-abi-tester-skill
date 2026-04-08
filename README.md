@@ -2,7 +2,22 @@
 
 [English](./README.md) | [中文概览](./docs/README.zh-CN.md) | [中文使用指南](./docs/usage.zh-CN.md)
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](./LICENSE)
+[![Issues](https://img.shields.io/github/issues/0xlfhuang/evm-hardhat-abi-tester-skill)](https://github.com/0xlfhuang/evm-hardhat-abi-tester-skill/issues)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](./CONTRIBUTING.md)
+
 `evm-hardhat-abi-tester-skill` is an installable skill bundle for AI coding tools. It helps agents scaffold beginner-friendly Hardhat JavaScript projects for interacting with deployed EVM smart contracts from ABI files, RPC credentials, contract notes, and an optional contract address.
+
+Repository: [github.com/0xlfhuang/evm-hardhat-abi-tester-skill](https://github.com/0xlfhuang/evm-hardhat-abi-tester-skill)
+
+Quick links:
+
+- [Install from GitHub](#install-from-github)
+- [Usage](#usage)
+- [Skill repo vs generated project](#skill-repo-vs-generated-project)
+- [Chinese overview](./docs/README.zh-CN.md)
+- [Chinese usage guide](./docs/usage.zh-CN.md)
+- [Open an issue](https://github.com/0xlfhuang/evm-hardhat-abi-tester-skill/issues)
 
 This repository contains:
 
@@ -46,6 +61,8 @@ It does not ship a production dApp or Solidity source tree. The goal is to distr
 ### Install from a local clone
 
 ```bash
+git clone https://github.com/0xlfhuang/evm-hardhat-abi-tester-skill.git
+cd evm-hardhat-abi-tester-skill
 ./install.sh --tool codex-user
 ./install.sh --tool claude-user
 ./install.sh --tool project-all --target-dir /path/to/project
@@ -53,14 +70,14 @@ It does not ship a production dApp or Solidity source tree. The goal is to distr
 
 ### Install from GitHub
 
-Replace `<owner>/<repo>` with your repository slug:
+Published repository: `0xlfhuang/evm-hardhat-abi-tester-skill`
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/<owner>/<repo>/main/install.sh | bash -s -- --repo <owner>/<repo> --tool codex-user
+curl -fsSL https://raw.githubusercontent.com/0xlfhuang/evm-hardhat-abi-tester-skill/main/install.sh | bash -s -- --repo 0xlfhuang/evm-hardhat-abi-tester-skill --tool codex-user
 
-curl -fsSL https://raw.githubusercontent.com/<owner>/<repo>/main/install.sh | bash -s -- --repo <owner>/<repo> --tool claude-user
+curl -fsSL https://raw.githubusercontent.com/0xlfhuang/evm-hardhat-abi-tester-skill/main/install.sh | bash -s -- --repo 0xlfhuang/evm-hardhat-abi-tester-skill --tool claude-user
 
-curl -fsSL https://raw.githubusercontent.com/<owner>/<repo>/main/install.sh | bash -s -- --repo <owner>/<repo> --tool project-all --target-dir /path/to/project
+curl -fsSL https://raw.githubusercontent.com/0xlfhuang/evm-hardhat-abi-tester-skill/main/install.sh | bash -s -- --repo 0xlfhuang/evm-hardhat-abi-tester-skill --tool project-all --target-dir /path/to/project
 ```
 
 ## Installation Modes
@@ -171,6 +188,18 @@ Once triggered, the agent is expected to follow the bundle workflow:
 - run read-first validation
 - keep write tests skipped until the contract address, method, and arguments are confirmed safe
 
+## Skill Repo vs Generated Project
+
+This repository and the generated scaffold project serve different purposes:
+
+- This repository `README.md` explains the skill itself: what it is, how to install it, and how to invoke it from Codex, Claude, Cursor, Copilot, or Gemini
+- The generated project's `README.md` explains the scaffold output: what each file does, which command to run first, how to update `.env`, how to add read/write tests, and which parts should remain conservative
+
+In short:
+
+- if you want to understand the install and invocation flow, read this repository README
+- if you want to understand the generated Hardhat project, read the scaffold project's root `README.md`
+
 ## Local Configuration and Secrets
 
 Runtime values such as `RPC_URL`, `CHAIN_ID`, `PRIVATE_KEY`, and contract-specific connection settings are intended to live in a local `.env` file inside the generated Hardhat project.
@@ -230,6 +259,34 @@ Contributions are welcome. Good pull requests usually fall into one of these are
 - fixing documentation, examples, or edge cases in the setup flow
 
 If you change installer behavior or template output, please run `./scripts/test-installer.sh` before opening a pull request.
+
+For bug reports, feature requests, and documentation fixes:
+
+- open an issue at [github.com/0xlfhuang/evm-hardhat-abi-tester-skill/issues](https://github.com/0xlfhuang/evm-hardhat-abi-tester-skill/issues)
+- submit a pull request at [github.com/0xlfhuang/evm-hardhat-abi-tester-skill/pulls](https://github.com/0xlfhuang/evm-hardhat-abi-tester-skill/pulls)
+- follow the contribution notes in [CONTRIBUTING.md](./CONTRIBUTING.md)
+
+## FAQ
+
+### Is `curl ... | bash` the usage command?
+
+No. That command installs the bundle from GitHub. After installation, you still need to ask your AI tool to scaffold or test a deployed contract with this skill.
+
+### Why does Codex use `$evm-hardhat-abi-tester` but other tools do not?
+
+Codex user installs support direct skill invocation by name. Claude, Cursor, Copilot, and Gemini typically load the installed bundle through project instruction files such as `CLAUDE.md`, `AGENTS.md`, `GEMINI.md`, or `.cursor/rules/...`.
+
+### Why is there another `README.md` inside the generated scaffold project?
+
+Because the two READMEs solve different problems. This repository README documents the skill bundle itself, while the generated project's README documents the output scaffold that the user will actually edit and run.
+
+### Where should `RPC_URL`, `CHAIN_ID`, and `PRIVATE_KEY` go?
+
+They belong in the generated project's local `.env` file. Keep `.env.example` as a tracked placeholder file and never commit real private keys or funded wallet credentials.
+
+### Does this repository deploy or compile Solidity contracts?
+
+No. This skill is designed for ABI-driven interaction with already deployed EVM contracts. It focuses on scaffolding Hardhat JavaScript tests and scripts around an existing contract.
 
 ## License
 

@@ -18,6 +18,11 @@
 - Store connection values in `.env`
 - Save the ABI as `abi/<ContractName>.json` when the contract name is known
 - Save interface notes as `docs/<ContractName>.md`
+- Keep `docs/<ContractName>.md` structured so beginners can quickly find:
+  - what the contract does
+  - which read methods are safest to call first
+  - which write methods should stay disabled for now
+  - argument examples and smoke-read suggestions
 - Update `config/targets.json` as the single summary of what to test
 
 ## How To Derive Good Starter Tests

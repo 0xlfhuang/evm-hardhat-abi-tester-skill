@@ -9,5 +9,20 @@
   "smokeRead": {
     "method": "",
     "args": []
+  },
+  "notes": {
+    "purpose": "这个文件是脚手架里最核心的目标配置入口，用来集中记录地址、ABI、建议测试的方法和 smoke read 配置。",
+    "beforeFirstRun": [
+      "先确认 contractAddress 是否已经填写",
+      "如果还没有安全的只读方法，先保持 smokeRead.method 为空"
+    ],
+    "whenAddingReadTests": [
+      "先补 readMethods 或 smokeRead",
+      "再修改 test/Contract.read.test.js"
+    ],
+    "whenAddingWriteTests": [
+      "先确认方法名、参数顺序和副作用",
+      "再修改 test/Contract.write.test.js"
+    ]
   }
 }

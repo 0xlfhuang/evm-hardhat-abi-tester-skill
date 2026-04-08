@@ -1,7 +1,11 @@
 {
   "name": "hardhat-abi-tester",
+  "description": "Beginner-friendly Hardhat scaffold for ABI-driven testing against a deployed EVM contract",
   "private": true,
   "scripts": {
+    "smoke": "npm run smoke:read",
+    "read": "npm run test:read",
+    "write": "npm run test:write",
     "test": "npx hardhat test",
     "test:read": "npx hardhat test test/Contract.read.test.js --network gsc_v2_test",
     "test:write": "npx hardhat test test/Contract.write.test.js --network gsc_v2_test",

@@ -4,6 +4,8 @@
 
 这份文档专门回答一个问题：`evm-hardhat-abi-tester-skill` 安装完成后，到底应该怎么用。
 
+官方仓库地址：[github.com/0xlfhuang/evm-hardhat-abi-tester-skill](https://github.com/0xlfhuang/evm-hardhat-abi-tester-skill)
+
 如果你已经完成安装，但还不确定：
 
 - 在不同工具里怎么触发它
@@ -13,11 +15,24 @@
 
 看这份文档就够了。
 
+不过要注意，这份文档讲的是“怎么使用这个 skill”，不是“生成后的 Hardhat 项目怎么维护”。后者应该看生成脚手架后根目录里的 `README.md`。
+
 ## 一句话理解
 
 这个 skill 的用途是：让 AI 代理基于你提供的 ABI、RPC 配置和接口说明，在一个目录里初始化或补全一个用于“已部署 EVM 合约交互测试”的 Hardhat JavaScript 项目。
 
 它不是用来编译或部署 Solidity 源码的，重点是围绕“已有合约 + ABI”做 read/write 测试脚手架。
+
+## 两层 README 不要混淆
+
+你后续会看到两类 README：
+
+- 这个仓库里的 README
+  讲的是 skill 本身怎么安装、怎么触发、怎么给 AI 提需求
+- 生成脚手架后的项目 README
+  讲的是那个 Hardhat 测试工程怎么理解、怎么运行、怎么继续补测试
+
+如果你已经把脚手架项目生成出来了，后续主要应该看生成项目根目录里的 `README.md`。
 
 ## 安装后怎么触发
 

@@ -22,12 +22,18 @@ Do not default to source compilation or deployment workflows. This skill is for 
 - Default network alias: `gsc_v2_test`
 - Default execution commands must use `--network gsc_v2_test`
 - Store the network connection values for `gsc_v2_test` in `.env`
+- Always generate a project-level `README.md` for the scaffolded project
+- Add beginner-friendly Chinese comments to generated scaffold scripts and test files by default
 - Always check `node -v` and `npm -v` before scaffolding the project
 - If Node.js or npm is missing, first try to install it automatically with the platform package manager when the environment and permissions allow it
 - If automatic installation is blocked, give platform-specific install steps and stop before the Hardhat setup step
 - If the user explicitly asks for another network alias, update the template consistently in config, commands, and docs
 - If `CONTRACT_ADDRESS` is not available yet, generate the scaffold anyway and keep read/write tests in a safe placeholder state
 - Write tests should be conservative by default and remain skipped until the target method and parameters are confirmed
+- Before generating the scaffold, confirm whether the generated project documentation should be in Chinese or English
+- If the user did not specify a language, ask before generating the scaffold; do not silently choose one
+- Keep the generated `README.md` and `docs/<ContractName>.md` in the same language
+- If the user does not ask for another comment language, keep code comments in Chinese so beginners can understand the scaffold faster
 
 ## Workflow
 
@@ -75,8 +81,11 @@ You should also collect:
 - `CONTRACT_NAME`
 - interface documentation or method notes
 - optional `CONTRACT_ADDRESS`
+- README language: Chinese or English
 
 If a value is missing and the user has not provided it yet, ask only for the specific missing field. Keep the setup moving with placeholders when safe.
+
+If the user asks to scaffold a new project and has not specified the README language, ask before writing project files.
 
 Read [references/input-contract-materials.md](references/input-contract-materials.md) when you need the exact intake checklist or need to derive test cases from ABI plus docs.
 
@@ -85,8 +94,12 @@ Read [references/input-contract-materials.md](references/input-contract-material
 After copying the template:
 - write `.env` from the provided values
 - refresh `.env.example` so it mirrors the expected keys
+- generate a project-level `README.md` in the confirmed language
 - save the ABI to `abi/<ContractName>.json`
-- summarize the interface notes to `docs/<ContractName>.md`
+- summarize the interface notes to `docs/<ContractName>.md` in the same language as `README.md`
+- keep `docs/<ContractName>.md` structured and beginner-friendly, covering contract purpose, safe read methods, risky write methods, smoke-read suggestions, and testing notes
+- keep the scaffold code comments beginner-friendly and Chinese by default
+- keep `package.json` scripts easy to discover for beginners, including simple aliases for smoke/read/write flows
 - update `config/targets.json` with:
   - `defaultNetwork`
   - `contractName`
@@ -95,8 +108,16 @@ After copying the template:
   - `docsPath`
   - at least one candidate `readMethods` entry if docs are sufficient
   - one `smokeRead` entry when a specific view method can be identified
+  - beginner-friendly `notes` that explain what to edit next
 
 If the contract name is known, replace the placeholder `Contract` label inside the copied test and script files.
+
+Use these references when generating the project README:
+
+- [references/generated-project-readme.en.md](references/generated-project-readme.en.md)
+- [references/generated-project-readme.zh-CN.md](references/generated-project-readme.zh-CN.md)
+
+Do not drop those reference files into the user project unchanged. Instead, use them as the structure source and fill in the actual contract name, paths, test files, commands, and warnings for the generated scaffold.
 
 ### 4. Build the first tests
 
@@ -117,6 +138,11 @@ Give the user the next concrete commands in this order:
 - run the read smoke script
 - run the read test file
 - only later, run a specific write case with `--grep`
+
+When handing off the generated project:
+- explicitly point the user to `README.md` first
+- explain which files they are expected to edit next
+- explain why write tests stay skipped until the transaction details are confirmed
 
 Default commands:
 
@@ -149,6 +175,8 @@ Read [references/safety-rules.md](references/safety-rules.md) before generating 
 - [references/input-contract-materials.md](references/input-contract-materials.md): required inputs and how to normalize them
 - [references/test-patterns.md](references/test-patterns.md): reusable read/write/event test shapes
 - [references/safety-rules.md](references/safety-rules.md): write safeguards and stop conditions
+- [references/generated-project-readme.en.md](references/generated-project-readme.en.md): English scaffold README structure
+- [references/generated-project-readme.zh-CN.md](references/generated-project-readme.zh-CN.md): Chinese scaffold README structure
 
 ## Assets
 
